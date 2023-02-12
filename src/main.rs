@@ -2,13 +2,13 @@
 
 #[cfg(test)] mod tests;
 
-use rocket::mtls::Certificate;
+// use rocket::mtls::Certificate;
 use rocket::fs::{FileServer, relative};
 
-#[get("/")]
-fn mutual(cert: Certificate<'_>) -> String {
-    format!("Hello! Here's what we know: [{}] {}", cert.serial(), cert.subject())
-}
+// #[get("/")]
+// fn mutual(cert: Certificate<'_>) -> String {
+//     format!("Hello! Here's what we know: [{}] {}", cert.serial(), cert.subject())
+// }
 
 // #[get("/", rank = 2)]
 // fn hello() -> &'static str {
@@ -38,7 +38,7 @@ fn rocket() -> _ {
     // See `Rocket.toml` and `Cargo.toml` for TLS configuration.
     // Run `./private/gen_certs.sh` to generate a CA and key pairs.
     rocket::build()
-        .mount("/", routes![mutual])
+        // .mount("/", routes![mutual])
         .mount("/", rocket::routes![manual::second])
         .mount("/", FileServer::from(relative!("static")))
 }
