@@ -28,3 +28,10 @@
 # [ed25519.tls]
 # certs = "private/ed25519_cert.pem"
 # key = "private/ed25519_key.pem"
+
+[debug]
+port = 14240
+
+
+[release]
+port = 14240
