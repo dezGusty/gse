@@ -1,7 +1,10 @@
 :root {
   --gus-secondary-bck: #002e30b6;
-  --gus-secondary-grad: linear-gradient(135deg, #0b0218 0%, #101128 100%);
-  --gus-high-color: #099000;
+  --gus-secondary-grad: linear-gradient(135deg, #131433 0%, #0f111a 100%);
+  --gus-high-color: #1babd6;
+  --gus-subtle-color: #030107B0;
+  --gus-border: #dde3ff;
+  --gus-action-color: #f6d365;
 
 }
 
@@ -10,27 +13,40 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 95vh;
 }
 
-
+.card-border {
+  border-radius: 0.5rem;
+	border: 0.2rem solid var(--gus-border);
+	box-shadow: inset 0 0 0 0.3rem var(--gus-subtle-color);
+}
 
 .card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 3rem;
+  grid-template-rows: auto;
+  grid-gap: 2rem;
   width: 100%;
   max-width: 1600px;
-  padding: 3rem;
+  padding: 2rem;
   align-self: center;
 
+  grid-template-areas:
+    "logo logo logo logo"
+    "app1 app2 app3 app4";
 }
 
-@media screen and (max-width: 860px) {
-  .card-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+.logoarea {
+  grid-row: 1;
+  grid-area: logo;
 
+  font-family: 'Fira Code', monospace;
+  font-size: xx-large;
+  font-weight: 900;
+  color: var(--gus-action-color);
+  display: block;
+}
 
 .card {
   position: relative;
@@ -57,41 +73,55 @@ body {
   transform: rotateX(5deg) translateY(-2rem);
 }
 
-.logoarea {
-  grid-column: 1 / 5;
-  grid-row: 1;
 
-  font-family: 'Fira Code', monospace;
-  font-size: xx-large;
-  font-weight: 900;
-  color: #f6d365;
-  display: block;
-}
 
 .card-cover>p {
   font-size: xx-large;
   font-family: 'Fira Code', monospace;
   font-weight: 800;
-  color: aquamarine;
+  color: var(--gus-action-color);
   text-align: center;
   position: absolute;
   bottom: 15%;
-  background: rgba(0, 0, 0, .75);
+  background: rgba(0, 0, 0, .8);
   width: 100%;
 }
 
 .app-1 {
   background-image: url(gusball_logo_256.webp);
+  grid-area: app1;
 }
 
 .app-2 {
   background-image: url(roll.jpg);
+  grid-area: app2;
 }
 
 .app-3 {
   background-image: url(weight-tracker.jpg);
+  grid-area: app3;
 }
 
 .app-4 {
   background-image: url(garbage.jpg);
+  grid-area: app4;
+}
+
+@media screen and (max-width: 860px) {
+
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "logo logo"
+      "app1 app2"
+      "app3 app4";
+  }
+
+  .logoarea {
+    font-size: large;
+  }
+
+  .card-cover>p {
+    font-size: large;
+  }
 }
